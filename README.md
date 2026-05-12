@@ -1,16 +1,71 @@
-# React + Vite
+# 💰 WealthWise — Personal Finance Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack personal finance tracker built with the MERN stack. 
+WealthWise helps users track their income, expenses, and savings 
+with a clean, professional and responsive UI.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
+[Coming Soon]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Tech Stack
 
-## React Compiler
+### Frontend
+- React + Vite
+- Tailwind CSS + DaisyUI
+- React Router DOM
+- Firebase Authentication
+- TanStack Query + Axios
+- Recharts
+- React Hook Form
+- SweetAlert2 + React Hot Toast
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Backend
+- Node.js + Express.js
+- MongoDB + Mongoose
+- Firebase Admin SDK
 
-## Expanding the ESLint configuration
+## ✨ Features
+- 🔐 Secure authentication with Firebase
+- 📊 Dashboard with income, expense and savings charts
+- 💸 Full transaction management (add, edit, delete, filter)
+- 📅 Date range filtering for transactions
+- 📤 Export transactions as PDF
+- 🏷️ Free / Pro / Extreme plan system
+- 🌙 Dark and Light mode toggle
+- 📱 Fully responsive design
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🗺️ Pages
+- Home (Landing Page)
+- About
+- Pricing
+- Login / Register
+- Dashboard (Protected)
+- Transactions (Protected)
+- Profile (Protected)
+
+## 🔮 Future Improvements
+- Payment gateway integration (Stripe / SSLCommerz)
+- Auto update user plan status after real payment
+- Email confirmation after purchase
+- Plan expiry and renewal system
+- Recurring transactions
+- Monthly report generation
+
+## 📦 Installation
+
+### Client
+cd client
+npm install
+npm run dev
+
+### Server
+cd server
+npm install
+npm run dev
+
+## 🌍 Deployment
+- Frontend → Vercel
+- Backend → Render
+
+## 📄 License
+MIT
