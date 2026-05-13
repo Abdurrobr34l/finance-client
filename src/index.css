@@ -1,3 +1,93 @@
-@import "tailwindcss";
-@plugin "daisyui";
+/* FONT FAMILY */
+/* @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"); */
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
+/* TAILWIND CSS & DAISY UI */
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: light, dark;
+}
+
+/* LIGHT THEME */
+@plugin "daisyui/theme" {
+  name: "light";
+
+  --color-base-100: #f0f4ff;
+  --color-base-200: #ffffff;
+  --color-base-300: #dbe4f5;
+  --color-primary: #0f2b5b;
+  --color-primary-content: #ffffff;
+  --color-secondary: #64748b;
+  --color-secondary-content: #ffffff;
+  --color-accent: #1e50a2;
+  --color-accent-content: #ffffff;
+
+  --color-info: #4a9eff;
+  --color-info-content: #ffffff;
+  --color-success: #16a34a;
+  --color-success-content: #ffffff;
+  --color-error: #dc2626;
+  --color-error-content: #ffffff;
+  --color-warning: #f59e0b;
+  --color-warning-content: #ffffff;
+}
+
+   /* DARK THEME */
+@plugin "daisyui/theme" {
+  name: "dark";
+  default: true;
+
+  /* BACKGROUNDS */
+  --color-base-100: #0a1628;
+  --color-base-200: #0d1b2e;
+  --color-base-300: #1a2c45;
+  --color-neutral: #1e3a5f;
+  --color-neutral-content: #ffffff;
+  --color-primary: #f8fafc;
+  --color-primary-content: #0a1628;
+  --color-secondary: #94a3b8;
+  --color-secondary-content: #0a1628;
+  --color-accent: #4a9eff;
+  --color-accent-content: #ffffff;
+
+  --color-info: #1e50a2;
+  --color-info-content: #ffffff;
+  --color-success: #16a34a;
+  --color-success-content: #ffffff;
+  --color-error: #dc2626;
+  --color-error-content: #ffffff;
+  --color-warning: #f59e0b;
+  --color-warning-content: #ffffff;
+}
+
+/* HEADINGS */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply text-primary;
+}
+
+/* BODY */
+body {
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  @apply bg-base-100 text-secondary;
+}
+
+/* USEABLE CODES */
+.number-font {
+  font-family: "DM Mono", monospace;
+}
+
+/* SECTION SPACING */
+.sectionPadding {
+  @apply py-8 md:py-12 lg:py-16 xl:py-20;
+}
+
+.sectionMargin {
+  @apply my-8 md:my-12 lg:my-16 xl:my-20;
+}
