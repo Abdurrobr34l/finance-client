@@ -1,18 +1,18 @@
-# 💰 WealthWise — Personal Finance Tracker
+# WealthWise — Personal Finance Tracker
 
 A full-stack personal finance tracker built with the MERN stack. 
 WealthWise helps users track their income, expenses, and savings 
 with a clean, professional and responsive UI.
 
-## 🚀 Live Demo
+## Live Demo
 [Coming Soon]
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 - React + Vite
 - Tailwind CSS + DaisyUI
-- React Router DOM
+- React Router
 - Firebase Authentication
 - TanStack Query + Axios
 - Recharts
@@ -21,8 +21,8 @@ with a clean, professional and responsive UI.
 
 ### Backend
 - Node.js + Express.js
-- MongoDB + Mongoose
-- Firebase Admin SDK
+- MongoDB + Mongoose 
+- Firebase Admin SDK 
 
 ## ✨ Features
 - 🔐 Secure authentication with Firebase
@@ -34,7 +34,7 @@ with a clean, professional and responsive UI.
 - 🌙 Dark and Light mode toggle
 - 📱 Fully responsive design
 
-## 🗺️ Pages
+## Pages
 - Home (Landing Page)
 - About
 - Pricing
@@ -43,7 +43,7 @@ with a clean, professional and responsive UI.
 - Transactions (Protected)
 - Profile (Protected)
 
-## 🔮 Future Improvements
+## Future Improvements
 - Payment gateway integration (Stripe / SSLCommerz)
 - Auto update user plan status after real payment
 - Email confirmation after purchase
@@ -51,7 +51,7 @@ with a clean, professional and responsive UI.
 - Recurring transactions
 - Monthly report generation
 
-## 📦 Installation
+## Installation
 
 ### Client
 cd client
@@ -63,9 +63,9 @@ cd server
 npm install
 npm run dev
 
-## 🌍 Deployment
-- Frontend → Vercel
-- Backend → Render
+## Deployment
+- Frontend → Netlify
+- Backend → Vercel
 
-## 📄 License
+## License
 MIT
