@@ -2,6 +2,7 @@ import React from 'react';
 import HeroSect from '../components/home/HeroSect';
 import AboutSect from '../components/home/about/AboutSect';
 import FeatureSect from '../components/home/FeatureSect';
+import CommingSoonBanner from '../components/ui/ComingSoonPage/ComingSoonBanner';
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
       <HeroSect />
       <AboutSect />
       <FeatureSect />
+      <CommingSoonBanner />
     </>
   );
 };

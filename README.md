@@ -17,6 +17,7 @@ with a clean, professional and responsive UI.
 - TanStack Query + Axios
 - Recharts
 - React Hook Form
+- lottie-react
 - SweetAlert2 + React Hot Toast
 
 ### Backend

@@ -1,11 +1,12 @@
 import React from 'react';
+import ComingSoon from '../components/ui/ComingSoonPage/ComingSoon';
 
 const AboutUs = () => {
   return (
     <div>
-      <title>About Us</title>
+      <title>Wealth Wise | About Us</title>
 
-      About
+      <ComingSoon />
     </div>
   );
 };

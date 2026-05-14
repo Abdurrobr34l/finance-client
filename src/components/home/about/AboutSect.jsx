@@ -12,7 +12,6 @@ const AboutSect = () => {
     <section className="sectionPadding overflow-hidden bg-base-200">
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-0">
-
           {/* LEFT CONTENT */}
           <div className="relative max-w-2xl">
             {/* LABEL */}

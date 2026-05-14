@@ -1,11 +1,12 @@
 import React from 'react';
+import ComingSoon from '../components/ui/ComingSoonPage/ComingSoon';
 
 const Pricing = () => {
   return (
     <div>
-      <title>Pricing</title>
+      <title>Wealth Wise | Pricing</title>
 
-      Pricing
+      <ComingSoon/>
     </div>
   );
 };
