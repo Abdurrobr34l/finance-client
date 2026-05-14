@@ -12,18 +12,17 @@
 /* LIGHT THEME */
 @plugin "daisyui/theme" {
   name: "light";
-
-  --color-base-100: #f0f4ff;
+  default: true;
+  --color-base-100: #eef2ff;
   --color-base-200: #ffffff;
-  --color-base-300: #dbe4f5;
-  --color-primary: #0f2b5b;
+  --color-base-300: #c7d2fe;
+  --color-primary: #1e1b4b;
   --color-primary-content: #ffffff;
   --color-secondary: #64748b;
   --color-secondary-content: #ffffff;
-  --color-accent: #1e50a2;
+  --color-accent: #4f46e5;
   --color-accent-content: #ffffff;
-
-  --color-info: #4a9eff;
+  --color-info: #818cf8;
   --color-info-content: #ffffff;
   --color-success: #16a34a;
   --color-success-content: #ffffff;
@@ -32,26 +31,20 @@
   --color-warning: #f59e0b;
   --color-warning-content: #ffffff;
 }
-
-   /* DARK THEME */
 @plugin "daisyui/theme" {
   name: "dark";
-  default: true;
-
-  /* BACKGROUNDS */
-  --color-base-100: #0a1628;
-  --color-base-200: #0d1b2e;
-  --color-base-300: #1a2c45;
-  --color-neutral: #1e3a5f;
+  --color-base-100: #0f0e2e;
+  --color-base-200: #13123a;
+  --color-base-300: #1e1b4b;
+  --color-neutral: #312e81;
   --color-neutral-content: #ffffff;
-  --color-primary: #f8fafc;
-  --color-primary-content: #0a1628;
-  --color-secondary: #94a3b8;
-  --color-secondary-content: #0a1628;
-  --color-accent: #4a9eff;
+  --color-primary: #eef2ff;
+  --color-primary-content: #0f0e2e;
+  --color-secondary: #a5b4fc;
+  --color-secondary-content: #0f0e2e;
+  --color-accent: #818cf8;
   --color-accent-content: #ffffff;
-
-  --color-info: #1e50a2;
+  --color-info: #4f46e5;
   --color-info-content: #ffffff;
   --color-success: #16a34a;
   --color-success-content: #ffffff;
@@ -74,8 +67,7 @@ h6 {
 /* BODY */
 body {
   font-family: "DM Sans", sans-serif;
-  font-optical-sizing: auto;
-  @apply bg-base-100 text-secondary;
+  @apply bg-base-300 text-secondary;
 }
 
 /* USEABLE CODES */
@@ -91,3 +83,16 @@ body {
 .sectionMargin {
   @apply my-8 md:my-12 lg:my-16 xl:my-20;
 }
+
+/* SECTION GRADIENT COLORS */
+/* Hero section */
+/* background: linear-gradient(135deg, #0f0e2e 0%, #1e1b4b 50%, #2d2a6e 100%); */
+
+/* Get Started section */
+/* background: linear-gradient(135deg, #1e1b4b 0%, #4f46e5 100%); */
+
+/* Pro pricing card header */
+/* background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%); */
+
+/* Dashboard summary card */
+/* background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); */

@@ -9,7 +9,7 @@ import Register from "../pages/Register";
 import DashboardLayout from "../layouts/DashboardLayout";
 import DashboardHome from "../components/dashboard/DashboardHome";
 import AboutUs from "../pages/AboutUs";
-import ErrorPage from "../pages/ErrorPages/ErrorPage404";
+import ErrorPage404 from "../pages/ErrorPage/ErrorPage404";
 
 const router = createBrowserRouter([
 
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
       { path: "transactions", element: <Transactions /> },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
-      { path: "*", element: <ErrorPage /> },
+      { path: "*", element: <ErrorPage404 /> },
     ]
   },
 
@@ -34,14 +34,14 @@ const router = createBrowserRouter([
     element: <DashboardLayout />,
     children: [
       { index: true, element: <Dashboard /> },
-      { path: "*", element: <ErrorPage /> },
+      { path: "*", element: <ErrorPage404 /> },
     ],
   },
 
   //* Global error page catch-all
   {
     path: "*",
-    element: <ErrorPage />,
+    element: <ErrorPage404 />,
   },
 ])
 

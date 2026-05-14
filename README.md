@@ -1,4 +1,4 @@
-# WealthWise — Personal Finance Tracker
+a# WealthWise — Personal Finance Tracker
 
 A full-stack personal finance tracker built with the MERN stack. 
 WealthWise helps users track their income, expenses, and savings 
@@ -50,6 +50,9 @@ with a clean, professional and responsive UI.
 - Plan expiry and renewal system
 - Recurring transactions
 - Monthly report generation
+
+## Credits
+- 404 animated SVG face — Original by JON KANTNER on <a href="https://codepen.io/jkantner">CODEPEN</a>
 
 ## Installation
 
