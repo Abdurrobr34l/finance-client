@@ -4,6 +4,8 @@ import { FaArrowRight } from "react-icons/fa";
 import Container from "../../shared/Container";
 import { Link } from "react-router";
 import Counter from "./Counter";
+import SectionTitles from "../../ui/SectionTitles";
+import SectionSubTitle from "../../ui/SectionSubTitle";
 
 const AboutSect = () => {
   return (
@@ -19,17 +21,15 @@ const AboutSect = () => {
             </p>
 
             {/* HEADING */}
-            <h2 className="text-4xl font-extrabold leading-[1.08] tracking-tight text-primary md:text-6xl lg:text-5xl xl:text-6xl 2xl:text-7xl 2xl:leading-18">
-              We built the tool we wished we had.
-            </h2>
+            <SectionTitles >We built the tool we wished we had.</SectionTitles>
 
             {/* DESCRIPTION */}
-            <p className="mt-4 text-base leading-6 text-secondary md:text-lg">
+            <SectionSubTitle>
               Most finance apps are either too simple or too overwhelming.
               WealthWise started as a side project to fix that — a clean,
               honest way to see where your money goes every month, without
               the noise.
-            </p>
+            </SectionSubTitle>
 
             {/* STATS */}
             <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
