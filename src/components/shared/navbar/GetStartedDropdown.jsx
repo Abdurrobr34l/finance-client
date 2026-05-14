@@ -30,7 +30,7 @@ const GetStartedDropdown = () => {
 
       {/* Dropdown Menu */}
       <ul
-        className="absolute right-0 mt-3 border w-52 bg-base-200 rounded-box p-2 shadow-lg z-50 transition-all duration-300 ease-in-out origin-top"
+        className="absolute right-0 mt-0 border w-52 bg-base-200 rounded-box p-2 shadow-lg z-50 transition-all duration-300 ease-in-out origin-top"
         style={{
           opacity: isOpen ? 1 : 0,
           transform: isOpen ? "translateY(14px)" : "translateY(-40px)",

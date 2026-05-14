@@ -19,7 +19,7 @@ const Navbar = () => {
   const user = null;
 
   return (
-    <header className="bg-base-200 py-3">
+    <header className="bg-base-200">
       <Container className="navbar">
         {/* LEFT SIDE: Logo */}
         <div className="navbar-start">
@@ -28,13 +28,14 @@ const Navbar = () => {
 
         {/* MIDDLE: Desktop Navigation */}
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal gap-2 px-1">
+          <ul className="menu menu-horizontal gap-4 px-1">
             {navigationLinks.map(({ id, path, pathName }) => (
               <li key={id}>
                 <NavLink
                   to={path}
                   className={({ isActive }) =>
-                    `px-4 py-2 rounded-md transition-colors ${isActive ? "text-accent font-bold" : "hover:text-accent"}`
+                    `nav-link ${isActive ? "nav-link-active" : "nav-link-inactive"
+                    }`
                   }
                 >
                   {pathName}

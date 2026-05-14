@@ -54,7 +54,7 @@ const DropdownMenu = ({ user = null }) => {
 
       {/* Dropdown */}
       <div
-        className={`absolute right-0 top-16 w-56 bg-base-200 rounded-2xl shadow-2xl overflow-hidden z-50 transform transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] border
+        className={`absolute right-0 top-13 w-56 bg-base-200 rounded-2xl shadow-2xl overflow-hidden z-50 transform transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] border
           ${
           isOpen
             ? "translate-y-0 opacity-100 scale-100"

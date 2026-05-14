@@ -75,6 +75,28 @@ body {
   font-family: "DM Mono", monospace;
 }
 
+.nav-link {
+    @apply relative px-4 py-2 transition-colors hover:bg-transparent
+    before:content-['']
+    before:absolute
+    before:left-0
+    before:bottom-0
+    before:h-0.5
+    before:w-0
+    before:bg-accent
+    before:transition-all
+    before:duration-300
+    hover:before:w-full;
+  }
+
+  .nav-link-active {
+    @apply text-accent font-semibold before:w-full;
+  }
+
+  .nav-link-inactive {
+    @apply hover:text-accent;
+  }
+
 /* SECTION SPACING */
 .sectionPadding {
   @apply py-8 md:py-12 lg:py-16 xl:py-20;
