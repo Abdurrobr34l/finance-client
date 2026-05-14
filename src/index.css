@@ -108,6 +108,18 @@ body {
 
 /* SECTION GRADIENT COLORS */
 /* Hero section */
+.hero-bg {
+  background-image: linear-gradient(
+      180deg,
+      rgba(125, 211, 252, 0.92),
+      rgba(56, 189, 248, 0.88)
+    ),
+    url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop");
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 /* background: linear-gradient(135deg, #0f0e2e 0%, #1e1b4b 50%, #2d2a6e 100%); */
 
 /* Get Started section */

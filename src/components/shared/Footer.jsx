@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from "react-router";
 import Container from "../shared/Container";
+import { Link } from "react-router";
 import { FaGlobeAmericas, FaRegEnvelope, FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 import { IoShareSocialOutline } from "react-icons/io5";
 import { HiOutlineShieldCheck } from "react-icons/hi2";
@@ -163,7 +163,7 @@ export default function Footer() {
 
                   <p className="mt-2 text-sm leading-6 text-secondary">
                     Your personal finances, protected with bank-grade security and
-                    <span className="number-font!"> 256</span>-bit AES encryption.
+                    <span className="number-font"> 256</span>-bit AES encryption.
                   </p>
                 </div>
               </div>
