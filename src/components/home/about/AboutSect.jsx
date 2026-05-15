@@ -34,7 +34,7 @@ const AboutSect = () => {
             <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
 
               {/* CARD */}
-              <div className="rounded-3xl bg-base-100 px-6 py-7 text-center shadow-sm border border-primary/5">
+              <div className="px-6 py-7 text-center rounded-3xl border border-white/10 bg-base-100 p-6 shadow-xl shadow-black/10 transition-all duration-300 hover:-translate-y-2 hover:border-accent/40">
                 <h3 className="text-3xl font-extrabold text-accent">
                   <Counter end={10} suffix="K+" />
                 </h3>
@@ -45,7 +45,7 @@ const AboutSect = () => {
               </div>
 
               {/* CARD */}
-              <div className="rounded-3xl bg-base-100 px-6 py-7 text-center shadow-sm border border-primary/5">
+              <div className="px-6 py-7 text-center rounded-3xl border border-white/10 bg-base-100 p-6 shadow-xl shadow-black/10 transition-all duration-300 hover:-translate-y-2 hover:border-accent/40">
                 <h3 className="text-3xl font-extrabold text-accent">
                   <Counter end={99.9} decimals={1} suffix="%" />
                 </h3>
@@ -56,7 +56,7 @@ const AboutSect = () => {
               </div>
 
               {/* CARD */}
-              <div className="rounded-3xl bg-base-100 px-6 py-7 text-center shadow-sm border border-primary/5">
+              <div className="px-6 py-7 text-center rounded-3xl border border-white/10 bg-base-100 p-6 shadow-xl shadow-black/10 transition-all duration-300 hover:-translate-y-2 hover:border-accent/40">
                 <h3 className="text-3xl font-extrabold text-accent">
                   <Counter end={256} />
                 </h3>

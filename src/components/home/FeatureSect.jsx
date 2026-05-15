@@ -72,7 +72,7 @@ const Feature = () => {
             <div className="mt-5 space-y-2">
               {[
                 { label: "Housing", amount: "1,200", color: "bg-accent", pct: "w-full" },
-                { label: "Food & Dining", amount: "340", color: "bg-info", pct: "w-4/6" },
+                { label: "Food & Dining", amount: "340", color: "bg-accent/80", pct: "w-4/6" },
                 { label: "Transport", amount: "180", color: "bg-accent/50", pct: "w-3/6" },
                 { label: "Entertainment", amount: "95", color: "bg-accent/30", pct: "w-2/6" },
               ].map((item) => (

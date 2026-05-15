@@ -2,55 +2,64 @@ export const testimonials = [
   {
     id: 1,
     name: "Joel N.",
+    stars: 5,
     review:
-      "Simple to understand dashboard. Helps me stay on top of everything easily.",
+      "Simple dashboard. I can understand my spending without opening a spreadsheet.",
   },
   {
     id: 2,
     name: "Peter Z.",
+    stars: 4,
     review:
-      "This is kind of wild. Also, I was wrong, WealthWise is significantly better than other apps.",
+      "I thought budgeting apps were always messy. WealthWise feels much easier to use.",
   },
   {
     id: 3,
     name: "Stephen H.",
+    stars: 5,
     review:
-      "This app has helped me so much with budgeting and everything to do with my money!",
+      "This app helped me track my budget and finally see where my money was going.",
   },
   {
     id: 4,
     name: "Mika A.",
+    stars: 4,
     review:
-      "The budgeting capability is incredible. WealthWise is not just better — it feels effortless.",
+      "The budget alerts are very useful. I can notice overspending before it becomes a problem.",
   },
   {
     id: 5,
     name: "Whitney B.",
+    stars: 5,
     review:
-      "Love this app! So useful for me since I'm terrible with money. Keeps everything easy.",
+      "Love this app. It keeps money tracking simple for me and my family.",
   },
   {
     id: 6,
     name: "Daniel R.",
+    stars: 5,
     review:
-      "We had multiple accounts and credit cards everywhere. WealthWise finally organized our finances.",
+      "We had too many accounts and cards to manage. WealthWise made everything clearer.",
   },
   {
     id: 7,
     name: "Sarah T.",
+    stars: 4,
     review:
-      "Beautiful UI, smooth experience, and actually makes budgeting less stressful.",
+      "The design is clean, smooth, and actually makes budgeting less stressful.",
   },
   {
     id: 8,
     name: "Kevin M.",
+    stars: 5,
     review:
-      "The financial tips and spending insights are genuinely useful every single week.",
+      "The spending insights are useful every week. They help me make better choices.",
   },
   {
     id: 9,
     name: "Amanda L.",
+    stars: 5,
     review:
-      "I finally know where my money goes every month. This app changed everything.",
+      "I finally know what happens to my money each month. That changed a lot for me.",
   },
 ];

@@ -10,10 +10,14 @@ const Home = () => {
   return (
     <>
       <HeroSect />
-      <HowItWorks/>
       <AboutSect />
       <FeatureSect />
-      {/* <Testimonials/> */}
+      <HowItWorks/>
+      {/* Security */}
+      <Testimonials/>
+      {/* client */}
+      {/* faq */}
+      {/* get started */}
       <CommingSoonBanner />
     </>
   );

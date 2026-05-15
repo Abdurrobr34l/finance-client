@@ -1,12 +1,8 @@
 import { Link, useLocation } from 'react-router';
 import Container from '../../components/shared/Container';
-import("./animation.css")
-{/* 
-  404 Animation Credit:
-  Original animation by JON KANTNER on CodePen
-  Source: https://codepen.io/jkantner
-  Modified and converted to React by ABDUR ROB
-*/}
+import("./errorPageAnimation.css")
+
+//*  404 Animation Credit: Original animation by JON KANTNER on CodePen Source: https://codepen.io/jkantner Modified and converted to React by ABDUR ROB
 
 const ErrorPage404 = () => {
   const location = useLocation();

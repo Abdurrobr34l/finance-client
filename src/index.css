@@ -17,11 +17,11 @@
   --color-base-200: #ffffff;
   --color-base-300: #c7d2fe;
   --color-primary: #1e1b4b;
-  --color-primary-content: #ffffff;
   --color-secondary: #64748b;
   --color-secondary-content: #ffffff;
   --color-accent: #4f46e5;
-  --color-accent-content: #ffffff;
+  /* --color-primary-content: #ffffff; */
+  /* --color-accent-content: #ffffff;
   --color-info: #818cf8;
   --color-info-content: #ffffff;
   --color-success: #16a34a;
@@ -29,7 +29,7 @@
   --color-error: #dc2626;
   --color-error-content: #ffffff;
   --color-warning: #f59e0b;
-  --color-warning-content: #ffffff;
+  --color-warning-content: #ffffff; */
 }
 @plugin "daisyui/theme" {
   name: "dark";
@@ -37,13 +37,13 @@
   --color-base-200: #13123a;
   --color-base-300: #1e1b4b;
   --color-neutral: #312e81;
-  --color-neutral-content: #ffffff;
   --color-primary: #eef2ff;
   --color-primary-content: #0f0e2e;
   --color-secondary: #a5b4fc;
   --color-secondary-content: #0f0e2e;
   --color-accent: #818cf8;
-  --color-accent-content: #ffffff;
+  /* --color-neutral-content: #ffffff; */
+  /* --color-accent-content: #ffffff;
   --color-info: #4f46e5;
   --color-info-content: #ffffff;
   --color-success: #16a34a;
@@ -51,7 +51,7 @@
   --color-error: #dc2626;
   --color-error-content: #ffffff;
   --color-warning: #f59e0b;
-  --color-warning-content: #ffffff;
+  --color-warning-content: #ffffff; */
 }
 
 /* HEADINGS */
@@ -105,27 +105,3 @@ body {
 .sectionMargin {
   @apply my-8 md:my-12 lg:my-16 xl:my-20;
 }
-
-/* SECTION GRADIENT COLORS */
-/* Hero section */
-.hero-bg {
-  background-image: linear-gradient(
-      180deg,
-      rgba(125, 211, 252, 0.92),
-      rgba(56, 189, 248, 0.88)
-    ),
-    url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop");
-
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-/* Get Started section */
-/* background: linear-gradient(135deg, #1e1b4b 0%, #4f46e5 100%); */
-
-/* Pro pricing card header */
-/* background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%); */
-
-/* Dashboard summary card */
-/* background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); */

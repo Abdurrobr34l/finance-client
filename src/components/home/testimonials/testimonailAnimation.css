@@ -1,0 +1,17 @@
+@keyframes wealthwise-scroll-up {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+.testimonial-scroll {
+  animation: wealthwise-scroll-up var(--scroll-speed, 28s) linear infinite;
+}
+
+.testimonial-scroll:hover {
+  animation-play-state: paused;
+}
