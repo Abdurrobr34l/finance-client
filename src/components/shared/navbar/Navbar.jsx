@@ -5,9 +5,12 @@ import useTheme from "../../../hooks/useTheme";
 import Container from "../Container";
 import GetStartedDropdown from "./GetStartedDropdown";
 import DropdownMenu from "./DropdownMenu";
+import { AuthContext } from "../../../Context/AuthContext";
+import { useContext } from "react";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
+  const { user, logOut } = useContext(AuthContext);
 
   const navigationLinks = [
     { id: 1, path: "/", pathName: "Home" },
@@ -15,8 +18,6 @@ const Navbar = () => {
     { id: 3, path: "/transactions", pathName: "Transaction" },
     { id: 4, path: "/dashboard", pathName: "Dashboard" },
   ];
-
-  const user = null;
 
   return (
     <header className="bg-base-200">
@@ -65,15 +66,70 @@ const Navbar = () => {
           {/* Auth Buttons */}
           {user ? (
             <div className="dropdown dropdown-end">
-              <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar border border-accent">
+
+              {/* Avatar */}
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar border border-accent hover:scale-105 transition"
+              >
                 <div className="w-10 rounded-full">
-                  <img alt="User Profile" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                  <img
+                    src={
+                      user?.photoURL ||
+                      "https://img.icons8.com/ultraviolet/40/user-male-circle.png"
+                    }
+                    alt="User Avatar"
+                  />
                 </div>
               </div>
-              <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-200 rounded-box mt-3 w-52 p-2 shadow-lg z-50">
-                <li><NavLink to="/dashboard">Dashboard</NavLink></li>
-                <li><NavLink to="/settings">Settings</NavLink></li>
-                <li className="text-error"><a>Logout</a></li>
+
+              {/* Dropdown */}
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content mt-4 w-64 bg-base-200 shadow-xl rounded-2xl p-4 z-50 border border-base-300"
+              >
+                {/* User Info */}
+                <div className="pb-3 mb-3 border-b border-base-300">
+                  <h3 className="font-bold text-primary">
+                    {user?.displayName || "User"}
+                  </h3>
+
+                  <p className="text-xs text-secondary break-all">
+                    {user?.email}
+                  </p>
+                </div>
+
+                {/* Links */}
+                <li>
+                  <NavLink
+                    to="/dashboard"
+                    className="font-medium"
+                  >
+                    Dashboard
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to="/profile"
+                    className="font-medium"
+                  >
+                    Profile
+                  </NavLink>
+                </li>
+
+                <div className="divider my-1"></div>
+
+                <li>
+                  <button
+                    onClick={logOut}
+                    className="text-error font-medium"
+                  >
+                    <PiSignOutBold />
+                    Logout
+                  </button>
+                </li>
               </ul>
             </div>
           ) : (

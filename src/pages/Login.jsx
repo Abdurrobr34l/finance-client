@@ -38,8 +38,8 @@ const Login = () => {
 
   return (
     <div className="sectionPadding min-h-screen flex items-center justify-center bg-base-100 relative overflow-hidden px-4">
-      <div className="absolute w-96 h-96 bg-accent/20 blur-[120px] rounded-full top-10 left-10" />
-      <div className="absolute w-96 h-96 bg-primary/10 blur-[120px] rounded-full bottom-10 right-10" />
+      <div className="absolute size-70 bg-accent/20 blur-[120px] rounded-full top-0 left-0 xl:size-96 xl:top-10 xl:left-10" />
+      <div className="absolute size-70 bg-primary/10 blur-[120px] rounded-full bottom-0 right-0 xl:size-96 xl:bottom-10 xl:right-10" />
 
       <div className="w-full max-w-md bg-base-200/40 backdrop-blur-2xl border border-base-300 rounded-3xl p-8 shadow-2xl">
 
