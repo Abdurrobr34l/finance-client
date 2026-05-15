@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
 import Pricing from "../pages/Pricing";
-import Transactions from "../pages/Transactions";
+import Transactions from "../pages/Transactions/Transactions";
 import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
