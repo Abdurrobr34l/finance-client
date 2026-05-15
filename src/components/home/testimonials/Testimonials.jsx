@@ -2,7 +2,8 @@ import React from "react";
 import Container from "../../shared/Container";
 import SectionTitles from "../../ui/SectionTitles";
 import SectionSubTitle from "../../ui/SectionSubTitle";
-import { testimonials } from "../../../data/testimonials";
+import { testimonials } from "../../data/testimonials";
+// import { testimonials } from "../../../data/testimonials";
 import TestimonialCard from "./TestimonialCard";
 import { FaStar } from "react-icons/fa6";
 import "./testimonailAnimation.css"

@@ -7,7 +7,7 @@ import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import DashboardLayout from "../layouts/DashboardLayout";
-import DashboardHome from "../components/dashboard/DashboardHome";
+// import DashboardHome from "../components/dashboard/DashboardHome";
 import AboutUs from "../pages/AboutUs";
 import ErrorPage404 from "../pages/ErrorPage/ErrorPage404";
 import PrivateRoute from "./PrivateRoute";
