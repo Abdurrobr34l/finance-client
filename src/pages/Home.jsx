@@ -6,6 +6,7 @@ import CommingSoonBanner from '../components/ui/ComingSoonPage/ComingSoonBanner'
 import Testimonials from '../components/home/testimonials/Testimonials';
 import HowItWorks from '../components/home/HowItWorks';
 import Clients from '../components/home/clients/Clients';
+import GetStartedSect from '../components/home/GetStartedSect';
 
 const Home = () => {
   return (
@@ -18,7 +19,7 @@ const Home = () => {
       <Testimonials />
       <Clients />
       {/* faq */}
-      {/* get started */}
+      <GetStartedSect/>
       <CommingSoonBanner />
     </>
   );

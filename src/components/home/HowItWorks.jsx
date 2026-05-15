@@ -37,7 +37,7 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="sectionPadding relative overflow-hidden bg-base-100">
+    <section className="sectionPadding relative overflow-hidden bg-base-200">
       <div className="pointer-events-none absolute left-0 top-20 h-80 w-80 rounded-full bg-accent/20 blur-[120px]" />
       <div className="pointer-events-none absolute bottom-10 right-0 h-96 w-96 rounded-full bg-info/20 blur-[130px]" />
 

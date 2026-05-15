@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { RiGoogleFill, RiEyeLine, RiEyeOffLine, RiShieldCheckLine } from "react-icons/ri";
 import { auth } from "../Firebase/Firebase.init";
+import axios from "axios";
 
 const Register = () => {
   const { registerUser, signInWithGoogle, updateUserProfile } = useContext(AuthContext);
@@ -16,21 +17,47 @@ const Register = () => {
   const inputClass = (hasError) =>
     `w-full px-4 py-3 rounded-xl bg-base-200/60 border ${hasError ? "border-error" : "border-base-300"} text-primary placeholder:text-secondary outline-none focus:ring-2 focus:ring-accent transition backdrop-blur`;
 
-  const onSubmit = async ({ name, email, password }) => {
-  setAuthError("");
-  try {
-    await registerUser(email, password);
-    await updateUserProfile({ displayName: name });
-    await auth.signOut(); // ← sign them out immediately after register
-    navigate("/login", { state: { registered: true } });
-  } catch (err) {
-    setAuthError(
-      err.code === "auth/email-already-in-use"
-        ? "An account with this email already exists."
-        : "Something went wrong. Try again."
-    );
-  }
-};
+  const onSubmit = async ({ name, email, password, photo }) => {
+    setAuthError("");
+
+    try {
+      await registerUser(email, password);
+
+      let photoURL = "";
+
+      // Upload image to imgbb
+      if (photo && photo[0]) {
+        const formData = new FormData();
+        formData.append("image", photo[0]);
+
+        const imgbbURL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY
+          }`;
+
+        const res = await axios.post(imgbbURL, formData);
+
+        photoURL = res.data.data.url;
+      }
+
+      // Update Firebase profile
+      await updateUserProfile({
+        displayName: name,
+        photoURL,
+      });
+
+      await auth.signOut();
+
+      navigate("/login", {
+        state: { registered: true },
+      });
+
+    } catch (err) {
+      setAuthError(
+        err.code === "auth/email-already-in-use"
+          ? "An account with this email already exists."
+          : "Something went wrong. Try again."
+      );
+    }
+  };
 
   const handleGoogle = async () => {
     setAuthError("");
@@ -72,6 +99,22 @@ const Register = () => {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+
+          {/* Photo */}
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-secondary">
+              Add profile image
+            </label>
+
+            <div className="relative">
+              <input
+                type="file"
+                accept="image/*"
+                className="w-full px-4 py-3 rounded-xl bg-base-200/60 border border-base-300 text-primary file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-accent file:text-white hover:file:bg-accent/80 transition cursor-pointer"
+                {...register("photo")}
+              />
+            </div>
+          </div>
 
           {/* Name */}
           <div>

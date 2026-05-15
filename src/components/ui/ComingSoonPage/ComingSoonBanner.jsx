@@ -35,7 +35,7 @@ const ComingSoonBanner = () => {
 
           {/* Pill badges */}
           <div className="flex flex-wrap justify-center gap-2 mt-2">
-            {["Security Assurance", "FAQ", "Get Started"].map((label) => (
+            {["Security Assurance", "FAQ"].map((label) => (
               <span
                 key={label}
                 className="badge badge-soft badge-accent text-xs px-3 py-2 rounded-full font-medium"

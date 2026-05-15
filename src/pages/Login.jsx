@@ -20,7 +20,7 @@ const Login = () => {
     setAuthError("");
     try {
       await signInUser(email, password);
-      navigate("/dashboard");
+      navigate("/");
     } catch {
       setAuthError("Invalid email or password.");
     }
@@ -30,7 +30,7 @@ const Login = () => {
     setAuthError("");
     try {
       await signInWithGoogle();
-      navigate("/dashboard");
+      navigate("/");
     } catch {
       setAuthError("Google sign-in failed. Try again.");
     }

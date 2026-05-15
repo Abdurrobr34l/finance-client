@@ -21,7 +21,7 @@ const Navbar = () => {
 
   return (
     <header className="bg-base-200">
-      <Container className="navbar">
+      <Container className="navbar py-4">
         {/* LEFT SIDE: Logo */}
         <div className="navbar-start">
           <div className="text-xl font-bold text-primary">WealthWise</div>
@@ -49,13 +49,13 @@ const Navbar = () => {
         {/* RIGHT SIDE */}
         <div className="navbar-end gap-4">
           {/* Theme Toggle */}
-          <label className="swap swap-rotate hover:bg-base-300 p-2 rounded-full transition-colors cursor-pointer">
+          <label className="swap swap-rotate bg-base-300 hover:bg-base-100 p-2 rounded-full transition-colors duration-300 ease-linear cursor-pointer">
             <input
               type="checkbox"
               onChange={toggleTheme}
               checked={theme === "dark"}
             />
-            <MdOutlineLightMode className="swap-off h-5 w-5 text-warning" />
+            <MdOutlineLightMode className="swap-off h-5 w-5 text-accent" />
             <MdOutlineDarkMode className="swap-on h-5 w-5 text-accent" />
           </label>
 
@@ -66,15 +66,15 @@ const Navbar = () => {
           {/* Auth Buttons */}
           {user ? (
             <div className="dropdown dropdown-end">
-
               {/* Avatar */}
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost btn-circle avatar border border-accent hover:scale-105 transition"
+                className="btn btn-ghost btn-circle size-16 avatar border border-accent hover:scale-105 transition"
               >
-                <div className="w-10 rounded-full">
+                <div className="w-16 rounded-full">
                   <img
+                    referrerPolicy="no-referrer"
                     src={
                       user?.photoURL ||
                       "https://img.icons8.com/ultraviolet/40/user-male-circle.png"
