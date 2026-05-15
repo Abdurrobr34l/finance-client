@@ -10,6 +10,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import DashboardHome from "../components/dashboard/DashboardHome";
 import AboutUs from "../pages/AboutUs";
 import ErrorPage404 from "../pages/ErrorPage/ErrorPage404";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
 
@@ -21,7 +22,13 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "about-us", element: <AboutUs /> },
       { path: "pricing", element: <Pricing /> },
-      { path: "transactions", element: <Transactions /> },
+      {
+        path: "transactions", element: (
+          <PrivateRoute>
+            <Transactions />
+          </PrivateRoute>
+        )
+      },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
       { path: "*", element: <ErrorPage404 /> },
@@ -31,7 +38,11 @@ const router = createBrowserRouter([
   //* DASHBOARD ROUTES
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       { index: true, element: <Dashboard /> },
       { path: "*", element: <ErrorPage404 /> },
