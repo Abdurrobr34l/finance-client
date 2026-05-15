@@ -5,6 +5,7 @@ import FeatureSect from '../components/home/FeatureSect';
 import CommingSoonBanner from '../components/ui/ComingSoonPage/ComingSoonBanner';
 import Testimonials from '../components/home/testimonials/Testimonials';
 import HowItWorks from '../components/home/HowItWorks';
+import Clients from '../components/home/clients/Clients';
 
 const Home = () => {
   return (
@@ -12,10 +13,10 @@ const Home = () => {
       <HeroSect />
       <AboutSect />
       <FeatureSect />
-      <HowItWorks/>
+      <HowItWorks />
       {/* Security */}
-      <Testimonials/>
-      {/* client */}
+      <Testimonials />
+      <Clients />
       {/* faq */}
       {/* get started */}
       <CommingSoonBanner />

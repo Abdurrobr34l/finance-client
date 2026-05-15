@@ -1,0 +1,17 @@
+@keyframes wealthwise-logo-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-marquee-track {
+  animation: wealthwise-logo-scroll var(--scroll-speed, 28s) linear infinite;
+}
+
+.logo-marquee-track:hover {
+  animation-play-state: paused;
+}
