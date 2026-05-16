@@ -6,6 +6,8 @@ import { RiGoogleFill, RiEyeLine, RiEyeOffLine, RiShieldCheckLine } from "react-
 import { auth } from "../Firebase/Firebase.init";
 import axios from "axios";
 
+const API = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 const Register = () => {
   const { registerUser, signInWithGoogle, updateUserProfile } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
@@ -16,7 +18,7 @@ const Register = () => {
 
   const inputClass = (hasError) =>
     `w-full px-4 py-3 rounded-xl bg-base-200/60 border ${hasError ? "border-error" : "border-base-300"} text-primary placeholder:text-secondary outline-none focus:ring-2 focus:ring-accent transition backdrop-blur`;
-  const API = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
   const onSubmit = async ({ name, email, password, photo }) => {
     setAuthError("");
 
@@ -55,11 +57,11 @@ const Register = () => {
       await auth.signOut();
       navigate("/login", { state: { registered: true } });
 
-      await auth.signOut();
+      // await auth.signOut();
 
-      navigate("/login", {
-        state: { registered: true },
-      });
+      // navigate("/login", {
+      //   state: { registered: true },
+      // });
 
     } catch (err) {
       setAuthError(
