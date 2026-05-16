@@ -37,9 +37,11 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  const updateUserProfile = (profile) => {
-    return updateProfile(auth.currentUser, profile);
-  };
+// AuthContext or AuthProvider
+const updateUserProfile = async (updates) => {
+  await updateProfile(auth.currentUser, updates);
+  setUser({ ...auth.currentUser }); // ← force React state to update with new data
+};
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {

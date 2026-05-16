@@ -48,7 +48,7 @@ const router = createBrowserRouter([
     ),
     children: [
       // { index: true, element: <Dashboard /> },
-      { index: true, element: <OverviewPage /> },
+      { index: true, path: "/dashboard/overview", element: <OverviewPage /> },
       { path: "/dashboard/transaction", element: <TransactionPage /> },
       { path: "/dashboard/profile", element: <MyProfilePage /> },
       { path: "*", element: <ErrorPage404 /> },

@@ -15,7 +15,7 @@ const Dashboard = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const dashboardLinks = [
-    { name: "Overview", icon: <FaHome />, path: "/dashboard" },
+    { name: "Overview", icon: <FaHome />, path: "/dashboard/overiew" },
     { name: "Transactions", icon: <FaExchangeAlt />, path: "/dashboard/transaction" },
     { name: "Profile", icon: <FaUser />, path: "/dashboard/profile" },
   ];
@@ -161,7 +161,7 @@ const Dashboard = () => {
           </div>
         </header>
 
-        <main className="flex-1 overflow-y-auto p-6">
+        <main className="flex-1 overflow-y-auto">
           <Outlet />
         </main>
 
