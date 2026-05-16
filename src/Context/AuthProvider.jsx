@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
 // AuthContext or AuthProvider
 const updateUserProfile = async (updates) => {
   await updateProfile(auth.currentUser, updates);
-  setUser({ ...auth.currentUser }); // ← force React state to update with new data
+  setUser({ ...auth.currentUser });
 };
 
   useEffect(() => {
