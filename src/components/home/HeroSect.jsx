@@ -54,8 +54,9 @@ const HeroSect = () => {
 
         {/* MAIN CARD */}
         <div className="relative mx-auto mt-10 rounded-2xl bg-accent/10 p-5 pb-0! shadow-[0_20px_70px_rgba(56,189,248,0.35)] md:p-10 lg:px-15 lg:mt-15 xl:lg:px-20 xl:lg:pt-15 xl:rounded-3xl">
-          <div className="overflow-hidden rounded-t-[18px] border border-black/5 bg-white shadow-lg">
-            <img src="https://placehold.net/600x600.png" alt="It is hero banner image" className="w-full md:aspect-3/2 lg:aspect-3/1.5" />
+          <div className="overflow-hidden rounded-t-[18px] border border-black/5 shadow-lg">
+            {/* <img src="https://i.ibb.co.com/5g2QKLvY/hero-bg-dark.jpg" alt="It is hero banner image" className="w-full md:aspect-3/2 lg:aspect-3/1.5" /> */}
+            <img src="https://i.ibb.co.com/KjXY8j71/hero-bg-light.jpg" alt="It is hero banner image" className="w-full md:aspect-3/2 lg:aspect-3/1.5" />
           </div>
         </div>
       </Container>

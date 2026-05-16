@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { NavLink, Outlet } from "react-router";
+import { Link, NavLink, Outlet } from "react-router";
 import { FaHome, FaExchangeAlt, FaUser } from "react-icons/fa";
 import { RiMenuFoldLine, RiMenuUnfoldLine } from "react-icons/ri";
 import { PiSignOutBold } from "react-icons/pi";
@@ -48,7 +48,7 @@ const Dashboard = () => {
           <div className={`flex items-center ${collapsed ? "justify-center" : "justify-between"} mb-8`}>
             {!collapsed && (
               <h2 className="flex items-center gap-2 font-bold text-lg">
-                <Logo customCss={"size-10!"} /> Wealthwise
+                <Logo customCss={"size-10!"} /> <Link to={"/"}>Wealthwise</Link>
               </h2>
             )}
             <button
