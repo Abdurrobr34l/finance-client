@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import {
@@ -8,9 +8,10 @@ import {
 } from "react-icons/fi";
 
 import AddTransactionModal from "../../pages/Transactions/AddTransactionModal";
+import { AuthContext } from "../../Context/AuthContext";
 
 // ─── Config ───────────────────────────────────────────────────────────────────
-const API = "http://localhost:3000";
+const API   = import.meta.env.VITE_API_URL || "http://localhost:3000";
 const LIMIT = 10;
 
 const CATEGORIES = [
@@ -23,9 +24,8 @@ const fmt = (n) =>
 
 const getPageNumbers = (page, totalPages) => {
   if (totalPages <= 5) return Array.from({ length: totalPages }, (_, i) => i + 1);
-  if (page <= 3) return [1, 2, 3, 4, 5];
-  if (page >= totalPages - 2)
-    return [totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
+  if (page <= 3)               return [1, 2, 3, 4, 5];
+  if (page >= totalPages - 2)  return [totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
   return [page - 2, page - 1, page, page + 1, page + 2];
 };
 
@@ -44,17 +44,10 @@ const DeleteModal = ({ isOpen, onClose, onConfirm, loading }) => {
             <p className="text-secondary text-sm mt-1">This action cannot be undone.</p>
           </div>
           <div className="flex gap-3 w-full">
-            <button
-              onClick={onClose}
-              className="btn btn-ghost rounded-xl flex-1 border border-base-300"
-            >
+            <button onClick={onClose} className="btn btn-ghost rounded-xl flex-1 border border-base-300">
               Cancel
             </button>
-            <button
-              onClick={onConfirm}
-              disabled={loading}
-              className="btn btn-error rounded-xl flex-1"
-            >
+            <button onClick={onConfirm} disabled={loading} className="btn btn-error rounded-xl flex-1">
               {loading ? <span className="loading loading-spinner loading-sm" /> : "Delete"}
             </button>
           </div>
@@ -80,43 +73,43 @@ const SummaryCard = ({ icon, label, value, accent }) => (
 // ─── Category badge ───────────────────────────────────────────────────────────
 const catBadge = (cat) => {
   const map = {
-    Work: "badge-accent",
-    Housing: "badge-warning",
-    Food: "badge-success",
-    Transport: "badge-info",
-    Shopping: "badge-error",
+    Work:          "badge-accent",
+    Housing:       "badge-warning",
+    Food:          "badge-success",
+    Transport:     "badge-info",
+    Shopping:      "badge-error",
     Entertainment: "badge-secondary",
-    Freelance: "badge-accent",
+    Freelance:     "badge-accent",
   };
   return map[cat] ?? "badge-ghost";
 };
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
-const TransactionPage = ({ uid = "demo-uid" }) => {const TransactionPage = () => {
+const TransactionPage = () => {
+  // ✅ FIX: read uid from AuthContext — never use a hardcoded default
   const { user } = useContext(AuthContext);
   const uid = user?.uid;
+
   // ── Data ──
-  const [transactions, setTransactions] = useState([]);
+  const [transactions,    setTransactions]    = useState([]);
   const [allTransactions, setAllTransactions] = useState([]);
-  const [total, setTotal] = useState(0);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [fetching, setFetching] = useState(false);
+  const [total,           setTotal]           = useState(0);
+  const [page,            setPage]            = useState(1);
+  const [totalPages,      setTotalPages]      = useState(1);
+  const [fetching,        setFetching]        = useState(false);
 
   // ── Filters ──
-  const [search, setSearch] = useState("");
-  const [typeFilter, setTypeFilter] = useState("All");
-  const [categoryFilter, setCategoryFilter] = useState("All");
-  const [sortBy, setSortBy] = useState("date");
+  const [search,          setSearch]          = useState("");
+  const [typeFilter,      setTypeFilter]      = useState("All");
+  const [categoryFilter,  setCategoryFilter]  = useState("All");
+  const [sortBy,          setSortBy]          = useState("date");
 
   // ── Modals ──
-  const [addModalOpen, setAddModalOpen] = useState(false);
-  const [editingTx, setEditingTx] = useState(null);
-  const [deleteTarget, setDeleteTarget] = useState(null);
+  const [addModalOpen,  setAddModalOpen]  = useState(false);
+  const [editingTx,     setEditingTx]     = useState(null);
+  const [deleteTarget,  setDeleteTarget]  = useState(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
-  // ── Use a ref-based refetch counter so we can force re-fetch ──
-  // without depending on useCallback deps that cause stale closures
   const [refetchKey, setRefetchKey] = useState(0);
   const pageRef = useRef(page);
   pageRef.current = page;
@@ -125,6 +118,7 @@ const TransactionPage = ({ uid = "demo-uid" }) => {const TransactionPage = () =>
 
   // ── Fetch paginated list ──
   useEffect(() => {
+    if (!uid) return;          // ✅ don't fetch if not logged in
     let cancelled = false;
 
     const fetchPage = async () => {
@@ -151,6 +145,7 @@ const TransactionPage = ({ uid = "demo-uid" }) => {const TransactionPage = () =>
 
   // ── Fetch ALL for summary cards ──
   useEffect(() => {
+    if (!uid) return;          // ✅ don't fetch if not logged in
     let cancelled = false;
 
     const fetchAll = async () => {
@@ -169,37 +164,27 @@ const TransactionPage = ({ uid = "demo-uid" }) => {const TransactionPage = () =>
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uid, refetchKey]);
 
-  // ── Called after every mutation ──
-  const handleSaved = () => {
-    triggerRefetch();
-  };
+  const handleSaved = () => triggerRefetch();
 
-  // ── Client-side filter + sort (on current page slice) ──
+  // ── Client-side filter + sort on current page slice ──
   const visible = transactions
     .filter((t) => {
-      const q = search.toLowerCase();
-      const matchSearch =
-        !q ||
-        (t.title || "").toLowerCase().includes(q) ||
-        (t.category || "").toLowerCase().includes(q);
-      const matchType = typeFilter === "All" || t.type === typeFilter;
-      const matchCat = categoryFilter === "All" || t.category === categoryFilter;
+      const q           = search.toLowerCase();
+      const matchSearch = !q || (t.title || "").toLowerCase().includes(q) || (t.category || "").toLowerCase().includes(q);
+      // ✅ case-insensitive type filter
+      const matchType   = typeFilter === "All" || t.type?.toLowerCase() === typeFilter.toLowerCase();
+      const matchCat    = categoryFilter === "All" || t.category === categoryFilter;
       return matchSearch && matchType && matchCat;
     })
     .sort((a, b) => {
-      if (sortBy === "date") return new Date(b.date) - new Date(a.date);
       if (sortBy === "amount-desc") return b.amount - a.amount;
-      if (sortBy === "amount-asc") return a.amount - b.amount;
-      return 0;
+      if (sortBy === "amount-asc")  return a.amount - b.amount;
+      return new Date(b.date) - new Date(a.date);
     });
 
-  // ── Summary totals across ALL data ──
-  const income = allTransactions
-    .filter((t) => t.type === "Income")
-    .reduce((s, t) => s + t.amount, 0);
-  const expense = allTransactions
-    .filter((t) => t.type === "Expense")
-    .reduce((s, t) => s + t.amount, 0);
+  // ── Summary totals (all data, case-insensitive) ──
+  const income  = allTransactions.filter((t) => t.type?.toLowerCase() === "income").reduce((s, t) => s + t.amount, 0);
+  const expense = allTransactions.filter((t) => t.type?.toLowerCase() === "expense").reduce((s, t) => s + t.amount, 0);
 
   // ── Delete ──
   const handleDelete = async () => {
@@ -209,9 +194,8 @@ const TransactionPage = ({ uid = "demo-uid" }) => {const TransactionPage = () =>
       await axios.delete(`${API}/transactions/${deleteTarget._id}`);
       toast.success("Transaction deleted.");
       setDeleteTarget(null);
-      // If last item on page > 1, go back one page then refetch
       if (transactions.length === 1 && page > 1) {
-        setPage((p) => p - 1); // page change already triggers useEffect
+        setPage((p) => p - 1);
       } else {
         triggerRefetch();
       }
@@ -222,7 +206,7 @@ const TransactionPage = ({ uid = "demo-uid" }) => {const TransactionPage = () =>
     }
   };
 
-  const openAdd = () => { setEditingTx(null); setAddModalOpen(true); };
+  const openAdd  = () => { setEditingTx(null); setAddModalOpen(true); };
   const openEdit = (tx) => { setEditingTx(tx); setAddModalOpen(true); };
 
   return (
@@ -233,39 +217,26 @@ const TransactionPage = ({ uid = "demo-uid" }) => {const TransactionPage = () =>
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
             <h1 className="text-3xl sm:text-4xl font-bold text-primary">Transactions</h1>
-            <p className="text-secondary text-sm mt-1">
-              Manage and track all your financial activity.
-            </p>
+            <p className="text-secondary text-sm mt-1">Manage and track all your financial activity.</p>
           </div>
-          <button
-            onClick={openAdd}
-            className="btn btn-primary rounded-xl gap-2 self-start sm:self-auto shadow-none"
-          >
+          <button onClick={openAdd} className="btn btn-primary rounded-xl gap-2 self-start sm:self-auto shadow-none">
             <FiPlus className="text-base" />
             Add Transaction
           </button>
         </div>
 
+        {/* ── Not logged in ── */}
+        {!uid && (
+          <div className="rounded-2xl border border-warning/20 bg-warning/10 p-6 text-center text-warning mb-6">
+            Please log in to view your transactions.
+          </div>
+        )}
+
         {/* ── Summary Cards ── */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-          <SummaryCard
-            icon={<FiTrendingUp className="text-success text-xl" />}
-            label="Income"
-            value={income}
-            accent="bg-success/10"
-          />
-          <SummaryCard
-            icon={<FiTrendingDown className="text-error text-xl" />}
-            label="Expenses"
-            value={expense}
-            accent="bg-error/10"
-          />
-          <SummaryCard
-            icon={<FiCreditCard className="text-accent text-xl" />}
-            label="Balance"
-            value={income - expense}
-            accent="bg-accent/10"
-          />
+          <SummaryCard icon={<FiTrendingUp  className="text-success text-xl" />} label="Income"  value={income}          accent="bg-success/10" />
+          <SummaryCard icon={<FiTrendingDown className="text-error   text-xl" />} label="Expenses" value={expense}         accent="bg-error/10"   />
+          <SummaryCard icon={<FiCreditCard  className="text-accent   text-xl" />} label="Balance" value={income - expense} accent="bg-accent/10"  />
         </div>
 
         {/* ── Filters ── */}
@@ -290,11 +261,7 @@ const TransactionPage = ({ uid = "demo-uid" }) => {const TransactionPage = () =>
                 <button
                   key={t}
                   onClick={() => { setTypeFilter(t); setPage(1); }}
-                  className={`btn btn-sm rounded-lg ${
-                    typeFilter === t
-                      ? "btn-accent text-white shadow-none"
-                      : "btn-ghost border border-base-300"
-                  }`}
+                  className={`btn btn-sm rounded-lg ${typeFilter === t ? "btn-accent text-white shadow-none" : "btn-ghost border border-base-300"}`}
                 >
                   {t}
                 </button>
@@ -337,9 +304,11 @@ const TransactionPage = ({ uid = "demo-uid" }) => {const TransactionPage = () =>
             <div className="flex flex-col items-center justify-center py-20 text-secondary gap-3">
               <FiCreditCard className="text-4xl opacity-30" />
               <p className="text-sm">No transactions found.</p>
-              <button onClick={openAdd} className="btn btn-sm btn-outline rounded-xl gap-1">
-                <FiPlus /> Add one
-              </button>
+              {uid && (
+                <button onClick={openAdd} className="btn btn-sm btn-outline rounded-xl gap-1">
+                  <FiPlus /> Add one
+                </button>
+              )}
             </div>
           ) : (
             <ul className="divide-y divide-base-300">
@@ -348,38 +317,27 @@ const TransactionPage = ({ uid = "demo-uid" }) => {const TransactionPage = () =>
                   key={tx._id}
                   className="flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-4 hover:bg-base-100/50 transition group"
                 >
-                  {/* Info */}
                   <div className="flex-1 min-w-0">
+                    {/* ✅ title → note → category fallback label */}
                     <p className="text-primary font-semibold text-sm truncate">
-                      {tx.title || tx.category}
+                      {tx.title || tx.note || tx.category}
                     </p>
                     <div className="flex items-center gap-2 mt-1.5 flex-wrap">
-                      <span className={`badge badge-sm ${catBadge(tx.category)}`}>
-                        {tx.category}
-                      </span>
-                      <span className={`badge badge-sm badge-outline ${
-                        tx.type === "Income"
-                          ? "text-success border-success"
-                          : "text-error border-error"
-                      }`}>
+                      <span className={`badge badge-sm ${catBadge(tx.category)}`}>{tx.category}</span>
+                      <span className={`badge badge-sm badge-outline ${tx.type?.toLowerCase() === "income" ? "text-success border-success" : "text-error border-error"}`}>
                         {tx.type}
                       </span>
                     </div>
                   </div>
 
-                  {/* Date — hidden on mobile */}
                   <p className="hidden md:block text-secondary text-xs shrink-0 tabular-nums">
                     {new Date(tx.date).toLocaleDateString("en-CA")}
                   </p>
 
-                  {/* Amount */}
-                  <p className={`number-font text-sm font-bold shrink-0 ${
-                    tx.type === "Income" ? "text-success" : "text-error"
-                  }`}>
-                    {tx.type === "Income" ? "+" : "-"}{fmt(tx.amount)}
+                  <p className={`number-font text-sm font-bold shrink-0 ${tx.type?.toLowerCase() === "income" ? "text-success" : "text-error"}`}>
+                    {tx.type?.toLowerCase() === "income" ? "+" : "-"}{fmt(tx.amount)}
                   </p>
 
-                  {/* Actions */}
                   <div className="flex gap-1 shrink-0 sm:opacity-0 sm:group-hover:opacity-100 transition">
                     <button
                       onClick={() => openEdit(tx)}
@@ -410,7 +368,6 @@ const TransactionPage = ({ uid = "demo-uid" }) => {const TransactionPage = () =>
               <span className="text-primary font-medium">{totalPages}</span> ·{" "}
               <span className="text-primary font-medium">{total}</span> total
             </p>
-
             <div className="flex items-center gap-1.5">
               <button
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
@@ -419,21 +376,15 @@ const TransactionPage = ({ uid = "demo-uid" }) => {const TransactionPage = () =>
               >
                 <FiChevronLeft />
               </button>
-
               {getPageNumbers(page, totalPages).map((p) => (
                 <button
                   key={p}
                   onClick={() => setPage(p)}
-                  className={`btn btn-sm rounded-xl w-9 ${
-                    p === page
-                      ? "btn-accent text-white shadow-none"
-                      : "btn-ghost border border-base-300"
-                  }`}
+                  className={`btn btn-sm rounded-xl w-9 ${p === page ? "btn-accent text-white shadow-none" : "btn-ghost border border-base-300"}`}
                 >
                   {p}
                 </button>
               ))}
-
               <button
                 onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                 disabled={page === totalPages}
@@ -466,6 +417,5 @@ const TransactionPage = ({ uid = "demo-uid" }) => {const TransactionPage = () =>
     </div>
   );
 };
-}
 
 export default TransactionPage;
