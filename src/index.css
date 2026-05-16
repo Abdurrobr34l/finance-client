@@ -47,7 +47,7 @@ h6 {
 /* BODY */
 body {
   font-family: "DM Sans", sans-serif;
-  @apply bg-base-300 text-secondary;
+  @apply text-secondary;
 }
 
 /* USEABLE CODES */
