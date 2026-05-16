@@ -4,7 +4,8 @@ import { useForm } from "react-hook-form";
 import { RiEditLine, RiUserLine, RiMailLine, RiCloseLine } from "react-icons/ri";
 import axios from "axios";
 
-const API = "http://localhost:3000";
+// const API = "http://localhost:3000";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 const MyProfilePage = () => {
   const { user, updateUserProfile } = useContext(AuthContext);

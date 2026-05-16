@@ -16,7 +16,7 @@ const Register = () => {
 
   const inputClass = (hasError) =>
     `w-full px-4 py-3 rounded-xl bg-base-200/60 border ${hasError ? "border-error" : "border-base-300"} text-primary placeholder:text-secondary outline-none focus:ring-2 focus:ring-accent transition backdrop-blur`;
-
+  const API = import.meta.env.VITE_API_URL || "http://localhost:3000";
   const onSubmit = async ({ name, email, password, photo }) => {
     setAuthError("");
 
@@ -71,24 +71,24 @@ const Register = () => {
   };
 
   const handleGoogle = async () => {
-  setAuthError("");
-  try {
-    const result = await signInWithGoogle();
-    const { uid, displayName, email, photoURL } = result.user;
+    setAuthError("");
+    try {
+      const result = await signInWithGoogle();
+      const { uid, displayName, email, photoURL } = result.user;
 
-    // Save to DB (upsert — safe to call every login)
-    await axios.post("http://localhost:3000/users", {
-      uid,
-      name: displayName,
-      email,
-      photoURL,
-    });
+      // Save to DB (upsert — safe to call every login)
+      await axios.post(`${API}/users`, {
+        uid,
+        name: displayName,
+        email,
+        photoURL,
+      });
 
-    navigate("/dashboard");
-  } catch {
-    setAuthError("Google sign-in failed. Try again.");
-  }
-};
+      navigate("/dashboard");
+    } catch {
+      setAuthError("Google sign-in failed. Try again.");
+    }
+  };
 
   return (
     <div className="sectionPadding min-h-screen flex items-center justify-center bg-base-100 relative overflow-hidden px-4">
