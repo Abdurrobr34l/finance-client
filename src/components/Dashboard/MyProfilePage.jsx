@@ -42,11 +42,12 @@ const MyProfilePage = () => {
         photoURL = res.data.data.url;
       }
 
-      await updateUserProfile({ displayName: name, photoURL });
       await axios.patch(`${API}/users/${user.uid}`, { name, photoURL });
+      await updateUserProfile({ displayName: name, photoURL });
 
       setModalOpen(false);
-    } catch {
+    } catch (err) {
+      console.error(err);
       setError("Failed to update profile. Please try again.");
     } finally {
       setLoading(false);
