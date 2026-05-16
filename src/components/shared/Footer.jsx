@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import { FaGlobeAmericas, FaRegEnvelope, FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 import { IoShareSocialOutline } from "react-icons/io5";
 import { HiOutlineShieldCheck } from "react-icons/hi2";
+import Logo from '../ui/Logo';
 
 export default function Footer() {
   const socialLinks = [
@@ -46,18 +47,7 @@ export default function Footer() {
           {/* BRAND */}
           <div className='text-center md:text-start'>
             {/* Logo */}
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 mb-5"
-            >
-              <div className="flex items-center justify-center w-9 h-9 rounded-lg border border-accent/20 bg-base-200">
-                <span className="text-accent font-bold text-lg">◫</span>
-              </div>
-
-              <h2 className="text-[28px] leading-none font-bold text-primary">
-                WealthWise
-              </h2>
-            </Link>
+            <Logo customCss={"mb-3 size-22!"}/>
 
             {/* Description */}
             <p className="md:max-w-72.5 text-sm leading-5 text-secondary">

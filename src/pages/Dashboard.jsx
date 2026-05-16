@@ -12,6 +12,7 @@ import {
 } from "react-icons/ri";
 import { PiSignOutBold } from "react-icons/pi";
 import { AuthContext } from "../Context/AuthContext";
+import Logo from "../components/ui/Logo";
 
 const DashboardSidebar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -68,14 +69,11 @@ const DashboardSidebar = () => {
 
           {/* Logo */}
           <div
-            className={`flex items-center ${
-              collapsed ? "justify-center" : "justify-between"
-            } mb-8`}
+            className={`flex items-center ${collapsed ? "justify-center" : "justify-between"
+              } mb-8`}
           >
             {!collapsed && (
-              <h2 className="text-2xl font-bold text-accent">
-                WealthWise
-              </h2>
+              <h2 className="flex items-center gap-2 font-bold text-lg"><Logo customCss={"size-10!"}/> Wealthwise</h2>
             )}
 
             <button
@@ -88,24 +86,18 @@ const DashboardSidebar = () => {
                 <RiMenuFoldLine size={22} />
               )}
             </button>
-
-            {collapsed && (
-              <div className="font-bold text-xl text-accent">
-                W
-              </div>
-            )}
           </div>
 
           {/* Mobile Close */}
           <button
             onClick={() => setMobileOpen(false)}
-            className="btn btn-circle btn-sm absolute top-3 right-3 lg:hidden"
+            className="btn btn-circle btn-sm absolute top-3 right-6 lg:hidden"
           >
             ✕
           </button>
 
           {/* Navigation */}
-          <ul className="space-y-2 flex-1">
+          <ul className="space-y-2 flex-1 mt-3!">
 
             {!collapsed && (
               <p className="text-xs uppercase text-secondary px-4 mb-3">
@@ -123,10 +115,9 @@ const DashboardSidebar = () => {
                     flex items-center gap-3
                     px-4 py-3 rounded-xl
                     transition-all duration-300
-                    ${
-                      isActive
-                        ? "bg-accent text-white"
-                        : "text-secondary hover:text-accent hover:bg-base-300"
+                    ${isActive
+                      ? "bg-accent text-white"
+                      : "text-secondary hover:text-accent hover:bg-base-300"
                     }
                   `
                   }
@@ -174,54 +165,54 @@ const DashboardSidebar = () => {
       {/* Main */}
       <div className="flex-1 flex flex-col min-w-0">
 
-       {/* Topbar */}
-<header className="h-16 border-b border-base-300 bg-base-200 px-6 flex items-center justify-between">
+        {/* Topbar */}
+        <header className="h-16 border-b border-base-300 bg-base-200 px-6 flex items-center justify-between">
 
-  {/* Left side */}
-  <div className="flex items-center">
+          {/* Left side */}
+          <div className="flex items-center">
 
-    <button
-      onClick={() => setMobileOpen(true)}
-      className="btn btn-circle btn-ghost lg:hidden"
-    >
-      <RiMenuUnfoldLine size={22} />
-    </button>
+            <button
+              onClick={() => setMobileOpen(true)}
+              className="btn btn-circle btn-ghost lg:hidden"
+            >
+              <RiMenuUnfoldLine size={22} />
+            </button>
 
-    <h1 className="ml-3 text-xl font-bold text-primary">
-      Dashboard
-    </h1>
+            <h1 className="ml-3 text-xl font-bold text-primary">
+              Dashboard
+            </h1>
 
-  </div>
+          </div>
 
-  {/* Right side user */}
-  <div className="flex items-center gap-3">
+          {/* Right side user */}
+          <div className="flex items-center gap-3">
 
-    <div className="hidden sm:block text-right">
-      <h3 className="text-sm font-semibold text-primary leading-tight">
-        {user?.displayName || "User"}
-      </h3>
+            <div className="hidden sm:block text-right">
+              <h3 className="text-sm font-semibold text-primary leading-tight">
+                {user?.displayName || "User"}
+              </h3>
 
-      <p className="text-xs text-secondary truncate max-w-45">
-        {user?.email}
-      </p>
-    </div>
+              <p className="text-xs text-secondary truncate max-w-45">
+                {user?.email}
+              </p>
+            </div>
 
-    <div className="avatar">
-      <div className="w-11 rounded-full border-2 border-accent shadow-md">
-        <img
-          src={
-            user?.photoURL ||
-            "https://img.icons8.com/ultraviolet/40/user-male-circle.png"
-          }
-          alt="user"
-          referrerPolicy="no-referrer"
-        />
-      </div>
-    </div>
+            <div className="avatar">
+              <div className="w-11 rounded-full border-2 border-accent shadow-md">
+                <img
+                  src={
+                    user?.photoURL ||
+                    "https://img.icons8.com/ultraviolet/40/user-male-circle.png"
+                  }
+                  alt="user"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
 
-  </div>
+          </div>
 
-</header>
+        </header>
 
         <main className="flex-1 overflow-y-auto p-6">
           <Outlet />

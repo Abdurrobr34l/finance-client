@@ -7,6 +7,7 @@ import GetStartedDropdown from "./GetStartedDropdown";
 import DropdownMenu from "./DropdownMenu";
 import { AuthContext } from "../../../Context/AuthContext";
 import { useContext } from "react";
+import Logo from "../../ui/Logo";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
@@ -24,7 +25,7 @@ const Navbar = () => {
       <Container className="navbar py-4">
         {/* LEFT SIDE: Logo */}
         <div className="navbar-start">
-          <div className="text-xl font-bold text-primary">WealthWise</div>
+          <Logo/>
         </div>
 
         {/* MIDDLE: Desktop Navigation */}
@@ -70,9 +71,9 @@ const Navbar = () => {
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost btn-circle size-16 avatar border border-accent hover:scale-105 transition"
+                className="btn btn-ghost btn-circle size-14 avatar border border-accent hover:scale-105 transition"
               >
-                <div className="w-16 rounded-full">
+                <div className="w-14 rounded-full">
                   <img
                     referrerPolicy="no-referrer"
                     src={
