@@ -311,8 +311,11 @@ const OverviewPage = () => {
       </div>
     );
   }
-
+  
   return (
+    <>
+    <title>WealthWise | Overview</title>
+    
     <section className="min-h-screen bg-base-100 px-4 py-6 text-primary sm:px-6">
       <div className="mx-auto max-w-7xl">
 
@@ -627,6 +630,7 @@ const OverviewPage = () => {
 
       </div>
     </section>
+</>
   );
 };
 

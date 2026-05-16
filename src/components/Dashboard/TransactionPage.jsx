@@ -11,7 +11,7 @@ import AddTransactionModal from "../../pages/Transactions/AddTransactionModal";
 import { AuthContext } from "../../Context/AuthContext";
 
 // ─── Config ───────────────────────────────────────────────────────────────────
-const API   = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API = import.meta.env.VITE_API_URL || "http://localhost:3000";
 const LIMIT = 10;
 
 const CATEGORIES = [
@@ -24,8 +24,8 @@ const fmt = (n) =>
 
 const getPageNumbers = (page, totalPages) => {
   if (totalPages <= 5) return Array.from({ length: totalPages }, (_, i) => i + 1);
-  if (page <= 3)               return [1, 2, 3, 4, 5];
-  if (page >= totalPages - 2)  return [totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
+  if (page <= 3) return [1, 2, 3, 4, 5];
+  if (page >= totalPages - 2) return [totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
   return [page - 2, page - 1, page, page + 1, page + 2];
 };
 
@@ -73,13 +73,13 @@ const SummaryCard = ({ icon, label, value, accent }) => (
 // ─── Category badge ───────────────────────────────────────────────────────────
 const catBadge = (cat) => {
   const map = {
-    Work:          "badge-accent",
-    Housing:       "badge-warning",
-    Food:          "badge-success",
-    Transport:     "badge-info",
-    Shopping:      "badge-error",
+    Work: "badge-accent",
+    Housing: "badge-warning",
+    Food: "badge-success",
+    Transport: "badge-info",
+    Shopping: "badge-error",
     Entertainment: "badge-secondary",
-    Freelance:     "badge-accent",
+    Freelance: "badge-accent",
   };
   return map[cat] ?? "badge-ghost";
 };
@@ -91,23 +91,23 @@ const TransactionPage = () => {
   const uid = user?.uid;
 
   // ── Data ──
-  const [transactions,    setTransactions]    = useState([]);
+  const [transactions, setTransactions] = useState([]);
   const [allTransactions, setAllTransactions] = useState([]);
-  const [total,           setTotal]           = useState(0);
-  const [page,            setPage]            = useState(1);
-  const [totalPages,      setTotalPages]      = useState(1);
-  const [fetching,        setFetching]        = useState(false);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [fetching, setFetching] = useState(false);
 
   // ── Filters ──
-  const [search,          setSearch]          = useState("");
-  const [typeFilter,      setTypeFilter]      = useState("All");
-  const [categoryFilter,  setCategoryFilter]  = useState("All");
-  const [sortBy,          setSortBy]          = useState("date");
+  const [search, setSearch] = useState("");
+  const [typeFilter, setTypeFilter] = useState("All");
+  const [categoryFilter, setCategoryFilter] = useState("All");
+  const [sortBy, setSortBy] = useState("date");
 
   // ── Modals ──
-  const [addModalOpen,  setAddModalOpen]  = useState(false);
-  const [editingTx,     setEditingTx]     = useState(null);
-  const [deleteTarget,  setDeleteTarget]  = useState(null);
+  const [addModalOpen, setAddModalOpen] = useState(false);
+  const [editingTx, setEditingTx] = useState(null);
+  const [deleteTarget, setDeleteTarget] = useState(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
   const [refetchKey, setRefetchKey] = useState(0);
@@ -140,7 +140,7 @@ const TransactionPage = () => {
 
     fetchPage();
     return () => { cancelled = true; };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uid, page, refetchKey]);
 
   // ── Fetch ALL for summary cards ──
@@ -161,7 +161,7 @@ const TransactionPage = () => {
 
     fetchAll();
     return () => { cancelled = true; };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uid, refetchKey]);
 
   const handleSaved = () => triggerRefetch();
@@ -169,21 +169,21 @@ const TransactionPage = () => {
   // ── Client-side filter + sort on current page slice ──
   const visible = transactions
     .filter((t) => {
-      const q           = search.toLowerCase();
+      const q = search.toLowerCase();
       const matchSearch = !q || (t.title || "").toLowerCase().includes(q) || (t.category || "").toLowerCase().includes(q);
       // ✅ case-insensitive type filter
-      const matchType   = typeFilter === "All" || t.type?.toLowerCase() === typeFilter.toLowerCase();
-      const matchCat    = categoryFilter === "All" || t.category === categoryFilter;
+      const matchType = typeFilter === "All" || t.type?.toLowerCase() === typeFilter.toLowerCase();
+      const matchCat = categoryFilter === "All" || t.category === categoryFilter;
       return matchSearch && matchType && matchCat;
     })
     .sort((a, b) => {
       if (sortBy === "amount-desc") return b.amount - a.amount;
-      if (sortBy === "amount-asc")  return a.amount - b.amount;
+      if (sortBy === "amount-asc") return a.amount - b.amount;
       return new Date(b.date) - new Date(a.date);
     });
 
   // ── Summary totals (all data, case-insensitive) ──
-  const income  = allTransactions.filter((t) => t.type?.toLowerCase() === "income").reduce((s, t) => s + t.amount, 0);
+  const income = allTransactions.filter((t) => t.type?.toLowerCase() === "income").reduce((s, t) => s + t.amount, 0);
   const expense = allTransactions.filter((t) => t.type?.toLowerCase() === "expense").reduce((s, t) => s + t.amount, 0);
 
   // ── Delete ──
@@ -206,215 +206,219 @@ const TransactionPage = () => {
     }
   };
 
-  const openAdd  = () => { setEditingTx(null); setAddModalOpen(true); };
+  const openAdd = () => { setEditingTx(null); setAddModalOpen(true); };
   const openEdit = (tx) => { setEditingTx(tx); setAddModalOpen(true); };
 
   return (
-    <div className="min-h-screen bg-base-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <>
+      <title>WealthWise | Transactions</title>
 
-        {/* ── Page Header ── */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-          <div>
-            <h1 className="text-3xl sm:text-4xl font-bold text-primary">Transactions</h1>
-            <p className="text-secondary text-sm mt-1">Manage and track all your financial activity.</p>
+      <div className="min-h-screen bg-base-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+
+          {/* ── Page Header ── */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+            <div>
+              <h1 className="text-3xl sm:text-4xl font-bold text-primary">Transactions</h1>
+              <p className="text-secondary text-sm mt-1">Manage and track all your financial activity.</p>
+            </div>
+            <button onClick={openAdd} className="btn btn-primary rounded-xl gap-2 self-start sm:self-auto shadow-none">
+              <FiPlus className="text-base" />
+              Add Transaction
+            </button>
           </div>
-          <button onClick={openAdd} className="btn btn-primary rounded-xl gap-2 self-start sm:self-auto shadow-none">
-            <FiPlus className="text-base" />
-            Add Transaction
-          </button>
-        </div>
 
-        {/* ── Not logged in ── */}
-        {!uid && (
-          <div className="rounded-2xl border border-warning/20 bg-warning/10 p-6 text-center text-warning mb-6">
-            Please log in to view your transactions.
-          </div>
-        )}
-
-        {/* ── Summary Cards ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-          <SummaryCard icon={<FiTrendingUp  className="text-success text-xl" />} label="Income"  value={income}          accent="bg-success/10" />
-          <SummaryCard icon={<FiTrendingDown className="text-error   text-xl" />} label="Expenses" value={expense}         accent="bg-error/10"   />
-          <SummaryCard icon={<FiCreditCard  className="text-accent   text-xl" />} label="Balance" value={income - expense} accent="bg-accent/10"  />
-        </div>
-
-        {/* ── Filters ── */}
-        <div className="rounded-2xl border border-base-300 bg-base-200 p-4 mb-6">
-          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:gap-3">
-
-            {/* Search */}
-            <div className="relative flex-1 min-w-0">
-              <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-sm" />
-              <input
-                type="text"
-                placeholder="Search transactions..."
-                value={search}
-                onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-                className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-base-100 border border-base-300 text-primary placeholder:text-secondary outline-none focus:ring-2 focus:ring-accent transition text-sm"
-              />
+          {/* ── Not logged in ── */}
+          {!uid && (
+            <div className="rounded-2xl border border-warning/20 bg-warning/10 p-6 text-center text-warning mb-6">
+              Please log in to view your transactions.
             </div>
-
-            {/* Type pills */}
-            <div className="flex gap-2 shrink-0">
-              {["All", "Income", "Expense"].map((t) => (
-                <button
-                  key={t}
-                  onClick={() => { setTypeFilter(t); setPage(1); }}
-                  className={`btn btn-sm rounded-lg ${typeFilter === t ? "btn-accent text-white shadow-none" : "btn-ghost border border-base-300"}`}
-                >
-                  {t}
-                </button>
-              ))}
-            </div>
-
-            {/* Category */}
-            <div className="flex items-center gap-2 shrink-0">
-              <FiSliders className="text-secondary text-sm shrink-0" />
-              <select
-                value={categoryFilter}
-                onChange={(e) => { setCategoryFilter(e.target.value); setPage(1); }}
-                className="select select-sm rounded-xl bg-base-100 border border-base-300 text-primary outline-none focus:ring-2 focus:ring-accent text-sm"
-              >
-                {CATEGORIES.map((c) => <option key={c}>{c}</option>)}
-              </select>
-            </div>
-
-            {/* Sort */}
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="select select-sm rounded-xl bg-base-100 border border-base-300 text-primary outline-none focus:ring-2 focus:ring-accent text-sm shrink-0"
-            >
-              <option value="date">Sort by Date</option>
-              <option value="amount-desc">Amount: High → Low</option>
-              <option value="amount-asc">Amount: Low → High</option>
-            </select>
-
-          </div>
-        </div>
-
-        {/* ── Transaction List ── */}
-        <div className="rounded-2xl border border-base-300 bg-base-200 overflow-hidden mb-6">
-          {fetching ? (
-            <div className="flex items-center justify-center py-20">
-              <span className="loading loading-spinner loading-lg text-accent" />
-            </div>
-          ) : visible.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-20 text-secondary gap-3">
-              <FiCreditCard className="text-4xl opacity-30" />
-              <p className="text-sm">No transactions found.</p>
-              {uid && (
-                <button onClick={openAdd} className="btn btn-sm btn-outline rounded-xl gap-1">
-                  <FiPlus /> Add one
-                </button>
-              )}
-            </div>
-          ) : (
-            <ul className="divide-y divide-base-300">
-              {visible.map((tx) => (
-                <li
-                  key={tx._id}
-                  className="flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-4 hover:bg-base-100/50 transition group"
-                >
-                  <div className="flex-1 min-w-0">
-                    {/* ✅ title → note → category fallback label */}
-                    <p className="text-primary font-semibold text-sm truncate">
-                      {tx.title || tx.note || tx.category}
-                    </p>
-                    <div className="flex items-center gap-2 mt-1.5 flex-wrap">
-                      <span className={`badge badge-sm ${catBadge(tx.category)}`}>{tx.category}</span>
-                      <span className={`badge badge-sm badge-outline ${tx.type?.toLowerCase() === "income" ? "text-success border-success" : "text-error border-error"}`}>
-                        {tx.type}
-                      </span>
-                    </div>
-                  </div>
-
-                  <p className="hidden md:block text-secondary text-xs shrink-0 tabular-nums">
-                    {new Date(tx.date).toLocaleDateString("en-CA")}
-                  </p>
-
-                  <p className={`number-font text-sm font-bold shrink-0 ${tx.type?.toLowerCase() === "income" ? "text-success" : "text-error"}`}>
-                    {tx.type?.toLowerCase() === "income" ? "+" : "-"}{fmt(tx.amount)}
-                  </p>
-
-                  <div className="flex gap-1 shrink-0 sm:opacity-0 sm:group-hover:opacity-100 transition">
-                    <button
-                      onClick={() => openEdit(tx)}
-                      className="btn btn-ghost btn-xs btn-circle hover:bg-base-300 text-secondary hover:text-primary"
-                      title="Edit"
-                    >
-                      <FiEdit2 size={13} />
-                    </button>
-                    <button
-                      onClick={() => setDeleteTarget(tx)}
-                      className="btn btn-ghost btn-xs btn-circle hover:bg-error/10 text-secondary hover:text-error"
-                      title="Delete"
-                    >
-                      <FiTrash2 size={13} />
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
           )}
-        </div>
 
-        {/* ── Pagination ── */}
-        {totalPages > 1 && (
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p className="text-secondary text-sm">
-              Page <span className="text-primary font-medium">{page}</span> of{" "}
-              <span className="text-primary font-medium">{totalPages}</span> ·{" "}
-              <span className="text-primary font-medium">{total}</span> total
-            </p>
-            <div className="flex items-center gap-1.5">
-              <button
-                onClick={() => setPage((p) => Math.max(1, p - 1))}
-                disabled={page === 1}
-                className="btn btn-ghost btn-sm rounded-xl border border-base-300 disabled:opacity-30"
-              >
-                <FiChevronLeft />
-              </button>
-              {getPageNumbers(page, totalPages).map((p) => (
-                <button
-                  key={p}
-                  onClick={() => setPage(p)}
-                  className={`btn btn-sm rounded-xl w-9 ${p === page ? "btn-accent text-white shadow-none" : "btn-ghost border border-base-300"}`}
+          {/* ── Summary Cards ── */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+            <SummaryCard icon={<FiTrendingUp className="text-success text-xl" />} label="Income" value={income} accent="bg-success/10" />
+            <SummaryCard icon={<FiTrendingDown className="text-error   text-xl" />} label="Expenses" value={expense} accent="bg-error/10" />
+            <SummaryCard icon={<FiCreditCard className="text-accent   text-xl" />} label="Balance" value={income - expense} accent="bg-accent/10" />
+          </div>
+
+          {/* ── Filters ── */}
+          <div className="rounded-2xl border border-base-300 bg-base-200 p-4 mb-6">
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:gap-3">
+
+              {/* Search */}
+              <div className="relative flex-1 min-w-0">
+                <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-sm" />
+                <input
+                  type="text"
+                  placeholder="Search transactions..."
+                  value={search}
+                  onChange={(e) => { setSearch(e.target.value); setPage(1); }}
+                  className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-base-100 border border-base-300 text-primary placeholder:text-secondary outline-none focus:ring-2 focus:ring-accent transition text-sm"
+                />
+              </div>
+
+              {/* Type pills */}
+              <div className="flex gap-2 shrink-0">
+                {["All", "Income", "Expense"].map((t) => (
+                  <button
+                    key={t}
+                    onClick={() => { setTypeFilter(t); setPage(1); }}
+                    className={`btn btn-sm rounded-lg ${typeFilter === t ? "btn-accent text-white shadow-none" : "btn-ghost border border-base-300"}`}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
+
+              {/* Category */}
+              <div className="flex items-center gap-2 shrink-0">
+                <FiSliders className="text-secondary text-sm shrink-0" />
+                <select
+                  value={categoryFilter}
+                  onChange={(e) => { setCategoryFilter(e.target.value); setPage(1); }}
+                  className="select select-sm rounded-xl bg-base-100 border border-base-300 text-primary outline-none focus:ring-2 focus:ring-accent text-sm"
                 >
-                  {p}
-                </button>
-              ))}
-              <button
-                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                disabled={page === totalPages}
-                className="btn btn-ghost btn-sm rounded-xl border border-base-300 disabled:opacity-30"
+                  {CATEGORIES.map((c) => <option key={c}>{c}</option>)}
+                </select>
+              </div>
+
+              {/* Sort */}
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="select select-sm rounded-xl bg-base-100 border border-base-300 text-primary outline-none focus:ring-2 focus:ring-accent text-sm shrink-0"
               >
-                <FiChevronRight />
-              </button>
+                <option value="date">Sort by Date</option>
+                <option value="amount-desc">Amount: High → Low</option>
+                <option value="amount-asc">Amount: Low → High</option>
+              </select>
+
             </div>
           </div>
-        )}
 
+          {/* ── Transaction List ── */}
+          <div className="rounded-2xl border border-base-300 bg-base-200 overflow-hidden mb-6">
+            {fetching ? (
+              <div className="flex items-center justify-center py-20">
+                <span className="loading loading-spinner loading-lg text-accent" />
+              </div>
+            ) : visible.length === 0 ? (
+              <div className="flex flex-col items-center justify-center py-20 text-secondary gap-3">
+                <FiCreditCard className="text-4xl opacity-30" />
+                <p className="text-sm">No transactions found.</p>
+                {uid && (
+                  <button onClick={openAdd} className="btn btn-sm btn-outline rounded-xl gap-1">
+                    <FiPlus /> Add one
+                  </button>
+                )}
+              </div>
+            ) : (
+              <ul className="divide-y divide-base-300">
+                {visible.map((tx) => (
+                  <li
+                    key={tx._id}
+                    className="flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-4 hover:bg-base-100/50 transition group"
+                  >
+                    <div className="flex-1 min-w-0">
+                      {/* ✅ title → note → category fallback label */}
+                      <p className="text-primary font-semibold text-sm truncate">
+                        {tx.title || tx.note || tx.category}
+                      </p>
+                      <div className="flex items-center gap-2 mt-1.5 flex-wrap">
+                        <span className={`badge badge-sm ${catBadge(tx.category)}`}>{tx.category}</span>
+                        <span className={`badge badge-sm badge-outline ${tx.type?.toLowerCase() === "income" ? "text-success border-success" : "text-error border-error"}`}>
+                          {tx.type}
+                        </span>
+                      </div>
+                    </div>
+
+                    <p className="hidden md:block text-secondary text-xs shrink-0 tabular-nums">
+                      {new Date(tx.date).toLocaleDateString("en-CA")}
+                    </p>
+
+                    <p className={`number-font text-sm font-bold shrink-0 ${tx.type?.toLowerCase() === "income" ? "text-success" : "text-error"}`}>
+                      {tx.type?.toLowerCase() === "income" ? "+" : "-"}{fmt(tx.amount)}
+                    </p>
+
+                    <div className="flex gap-1 shrink-0 sm:opacity-0 sm:group-hover:opacity-100 transition">
+                      <button
+                        onClick={() => openEdit(tx)}
+                        className="btn btn-ghost btn-xs btn-circle hover:bg-base-300 text-secondary hover:text-primary"
+                        title="Edit"
+                      >
+                        <FiEdit2 size={13} />
+                      </button>
+                      <button
+                        onClick={() => setDeleteTarget(tx)}
+                        className="btn btn-ghost btn-xs btn-circle hover:bg-error/10 text-secondary hover:text-error"
+                        title="Delete"
+                      >
+                        <FiTrash2 size={13} />
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+
+          {/* ── Pagination ── */}
+          {totalPages > 1 && (
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+              <p className="text-secondary text-sm">
+                Page <span className="text-primary font-medium">{page}</span> of{" "}
+                <span className="text-primary font-medium">{totalPages}</span> ·{" "}
+                <span className="text-primary font-medium">{total}</span> total
+              </p>
+              <div className="flex items-center gap-1.5">
+                <button
+                  onClick={() => setPage((p) => Math.max(1, p - 1))}
+                  disabled={page === 1}
+                  className="btn btn-ghost btn-sm rounded-xl border border-base-300 disabled:opacity-30"
+                >
+                  <FiChevronLeft />
+                </button>
+                {getPageNumbers(page, totalPages).map((p) => (
+                  <button
+                    key={p}
+                    onClick={() => setPage(p)}
+                    className={`btn btn-sm rounded-xl w-9 ${p === page ? "btn-accent text-white shadow-none" : "btn-ghost border border-base-300"}`}
+                  >
+                    {p}
+                  </button>
+                ))}
+                <button
+                  onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                  disabled={page === totalPages}
+                  className="btn btn-ghost btn-sm rounded-xl border border-base-300 disabled:opacity-30"
+                >
+                  <FiChevronRight />
+                </button>
+              </div>
+            </div>
+          )}
+
+        </div>
+
+        {/* ── Add / Edit Modal ── */}
+        <AddTransactionModal
+          isOpen={addModalOpen}
+          onClose={() => { setAddModalOpen(false); setEditingTx(null); }}
+          onSaved={handleSaved}
+          uid={uid}
+          editing={editingTx}
+        />
+
+        {/* ── Delete Confirm Modal ── */}
+        <DeleteModal
+          isOpen={!!deleteTarget}
+          onClose={() => setDeleteTarget(null)}
+          onConfirm={handleDelete}
+          loading={deleteLoading}
+        />
       </div>
-
-      {/* ── Add / Edit Modal ── */}
-      <AddTransactionModal
-        isOpen={addModalOpen}
-        onClose={() => { setAddModalOpen(false); setEditingTx(null); }}
-        onSaved={handleSaved}
-        uid={uid}
-        editing={editingTx}
-      />
-
-      {/* ── Delete Confirm Modal ── */}
-      <DeleteModal
-        isOpen={!!deleteTarget}
-        onClose={() => setDeleteTarget(null)}
-        onConfirm={handleDelete}
-        loading={deleteLoading}
-      />
-    </div>
+    </>
   );
 };
 

@@ -47,7 +47,7 @@ const Register = () => {
       });
 
       // Save user to DB
-      await axios.post("http://localhost:3000/users", {
+      await axios.post(`${API}/users`, {
         uid: auth.currentUser.uid,
         name,
         email,
@@ -86,7 +86,7 @@ const Register = () => {
         photoURL,
       });
 
-      navigate("/dashboard");
+      navigate("/dashboard/overview");
     } catch {
       setAuthError("Google sign-in failed. Try again.");
     }
