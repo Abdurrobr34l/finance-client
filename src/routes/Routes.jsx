@@ -11,6 +11,9 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import AboutUs from "../pages/AboutUs";
 import ErrorPage404 from "../pages/ErrorPage/ErrorPage404";
 import PrivateRoute from "./PrivateRoute";
+import MyProfilePage from "../components/Dashboard/MyProfilePage";
+import TransactionPage from "../components/Dashboard/TransactionPage";
+import OverviewPage from "../components/Dashboard/OverviewPage";
 
 const router = createBrowserRouter([
 
@@ -44,7 +47,10 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
-      { index: true, element: <Dashboard /> },
+      // { index: true, element: <Dashboard /> },
+      { index: true, element: <OverviewPage /> },
+      { path: "/dashboard/transaction", element: <TransactionPage /> },
+      { path: "/dashboard/profile", element: <MyProfilePage /> },
       { path: "*", element: <ErrorPage404 /> },
     ],
   },
