@@ -44,6 +44,17 @@ const Register = () => {
         photoURL,
       });
 
+      // Save user to DB
+      await axios.post("http://localhost:3000/users", {
+        uid: auth.currentUser.uid,
+        name,
+        email,
+        photoURL,
+      });
+
+      await auth.signOut();
+      navigate("/login", { state: { registered: true } });
+
       await auth.signOut();
 
       navigate("/login", {
@@ -60,14 +71,24 @@ const Register = () => {
   };
 
   const handleGoogle = async () => {
-    setAuthError("");
-    try {
-      await signInWithGoogle();
-      navigate("/dashboard");
-    } catch {
-      setAuthError("Google sign-in failed. Try again.");
-    }
-  };
+  setAuthError("");
+  try {
+    const result = await signInWithGoogle();
+    const { uid, displayName, email, photoURL } = result.user;
+
+    // Save to DB (upsert — safe to call every login)
+    await axios.post("http://localhost:3000/users", {
+      uid,
+      name: displayName,
+      email,
+      photoURL,
+    });
+
+    navigate("/dashboard");
+  } catch {
+    setAuthError("Google sign-in failed. Try again.");
+  }
+};
 
   return (
     <div className="sectionPadding min-h-screen flex items-center justify-center bg-base-100 relative overflow-hidden px-4">

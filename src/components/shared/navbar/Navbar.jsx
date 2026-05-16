@@ -113,7 +113,7 @@ const Navbar = () => {
 
                 <li>
                   <NavLink
-                    to="/profile"
+                    to="/dashboard/profile"
                     className="font-medium"
                   >
                     Profile
