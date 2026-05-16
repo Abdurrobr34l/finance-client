@@ -86,7 +86,7 @@ const catBadge = (cat) => {
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
 const TransactionPage = () => {
-  // ✅ FIX: read uid from AuthContext — never use a hardcoded default
+  // FIX: read uid from AuthContext — never use a hardcoded default
   const { user } = useContext(AuthContext);
   const uid = user?.uid;
 
@@ -118,7 +118,7 @@ const TransactionPage = () => {
 
   // ── Fetch paginated list ──
   useEffect(() => {
-    if (!uid) return;          // ✅ don't fetch if not logged in
+    if (!uid) return;
     let cancelled = false;
 
     const fetchPage = async () => {
