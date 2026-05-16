@@ -12,11 +12,12 @@ export default function Footer() {
     { href: "https://facebook.com", icon: FaFacebookF, label: "Facebook" },
     { href: "https://linkedin.com", icon: FaLinkedinIn, label: "LinkedIn" },
   ];
+  
   const productLinks = [
     { label: "About Us", path: "/about-us" },
     { label: "Pricing", path: "/pricing" },
     { label: "Transaction", path: "/transactions" },
-    { label: "Dashboard", path: "/dashboard" }
+    { label: "Dashboard", path: "/dashboard/overview" }
   ];
 
   const companyLinks = [

@@ -17,7 +17,7 @@ const Navbar = () => {
     { id: 1, path: "/", pathName: "Home" },
     { id: 2, path: "/pricing", pathName: "Pricing" },
     { id: 3, path: "/transactions", pathName: "Transaction" },
-    { id: 4, path: "/dashboard", pathName: "Dashboard" },
+    { id: 4, path: "/dashboard/overview", pathName: "Dashboard" },
   ];
 
   return (
@@ -104,7 +104,7 @@ const Navbar = () => {
                 {/* Links */}
                 <li>
                   <NavLink
-                    to="/dashboard"
+                    to="/dashboard/overview"
                     className="font-medium"
                   >
                     Dashboard

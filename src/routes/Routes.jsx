@@ -55,7 +55,7 @@ const router = createBrowserRouter([
     ],
   },
 
-  //* Global error page catch-all
+  //* GLOBAL ERROR PAGE
   {
     path: "*",
     element: <ErrorPage404 />,

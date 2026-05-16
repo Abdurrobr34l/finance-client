@@ -15,7 +15,7 @@ const Dashboard = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const dashboardLinks = [
-    { name: "Overview", icon: <FaHome />, path: "/dashboard/overiew" },
+    { name: "Overview", icon: <FaHome />, path: "/dashboard/overview" },
     { name: "Transactions", icon: <FaExchangeAlt />, path: "/dashboard/transaction" },
     { name: "Profile", icon: <FaUser />, path: "/dashboard/profile" },
   ];
@@ -75,7 +75,7 @@ const Dashboard = () => {
             {dashboardLinks.map((item) => (
               <li key={item.name}>
                 <NavLink
-                  end={item.path === "/dashboard"}
+                  end={item.path === "/dashboard/overview"}
                   to={item.path}
                   className={({ isActive }) =>
                     `flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300
