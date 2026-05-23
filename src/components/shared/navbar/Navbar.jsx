@@ -15,13 +15,14 @@ const Navbar = () => {
 
   const navigationLinks = [
     { id: 1, path: "/", pathName: "Home" },
+    { id: 2, path: "/about-us", pathName: "About Us" },
     { id: 2, path: "/pricing", pathName: "Pricing" },
     { id: 3, path: "/transactions", pathName: "Transaction" },
     { id: 4, path: "/dashboard/overview", pathName: "Dashboard" },
   ];
 
   return (
-    <header className="bg-base-200">
+    <header className="light:bg-base-200 dark:shadow-md">
       <Container className="navbar py-4">
         {/* LEFT SIDE: Logo */}
         <div className="navbar-start">
