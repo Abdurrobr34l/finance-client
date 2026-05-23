@@ -13,7 +13,7 @@ import ErrorPage404 from "../pages/ErrorPage/ErrorPage404";
 import PrivateRoute from "./PrivateRoute";
 import MyProfilePage from "../components/Dashboard/MyProfilePage";
 import TransactionPage from "../components/Dashboard/TransactionPage";
-import OverviewPage from "../components/Dashboard/OverviewPage";
+import OverviewPage from "../components/Dashboard/OverviewPage/OverviewPage";
 
 const router = createBrowserRouter([
 
